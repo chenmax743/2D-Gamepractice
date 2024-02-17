@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
         Flip();
     }
 
-    void Flip()
+    void Flip() //character change 
     {
         bool playerHasXAxisSpeed = Mathf.Abs(rb.velocity.x) > Mathf.Epsilon;
         anim.SetBool("Run", playerHasXAxisSpeed);
@@ -38,9 +38,9 @@ public class PlayerController : MonoBehaviour
                 transform.localRotation = Quaternion.Euler(0, 180, 0);
             }
         }
-    }
+    } 
 
-    void Move()
+    void Move() //character Move&Animation
     {
         float movedirection = Input.GetAxis("Horizontal");
         Vector2 player = new Vector2(movedirection * Speed, rb.velocity.y);
