@@ -5,14 +5,18 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float Speed;
+    public float Jumpspeed;
     private Rigidbody2D rb;
     private Animator anim;
+    private BoxCollider2D Feet;
+    private bool isGround;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        Feet = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -20,6 +24,9 @@ public class PlayerController : MonoBehaviour
     {
         Move();
         Flip();
+        Jump();
+        CheckGrounded();
+        SwitchAnimation();
     }
 
     void Flip() //character change 
@@ -47,5 +54,43 @@ public class PlayerController : MonoBehaviour
         rb.velocity = player;
         bool playerHasXAxisSpeed = Mathf.Abs(rb.velocity.x) > Mathf.Epsilon;
         anim.SetBool("Run", playerHasXAxisSpeed);
+    }
+
+    void Jump()
+    {
+        if(Input.GetButtonDown("Jump"))
+        {
+            if(isGround)
+            {
+                anim.SetBool("Jump", true);
+                Vector2 jumpVel = new Vector2(0.0f, Jumpspeed);
+                rb.velocity = Vector2.up * jumpVel;
+            }
+            
+        }
+    }
+
+    void SwitchAnimation()
+    {
+        anim.SetBool("Idle", false);
+        if(anim.GetBool("Jump"))
+        {
+            if (rb.velocity.y < 0.1f)
+            {
+                anim.SetBool("Jump", false);
+                anim.SetBool("Fall", true);
+            }
+        }
+        else if(isGround)
+        {
+            anim.SetBool("Fall", false);
+            anim.SetBool("Idle", true);
+        }
+    }
+
+    void CheckGrounded()
+    {
+        isGround = Feet.IsTouchingLayers(LayerMask.GetMask("Ground"));
+        Debug.Log(isGround);
     }
 }

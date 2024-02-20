@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 228249851}
   - component: {fileID: 228249853}
   - component: {fileID: 228249852}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4214,8 +4214,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00696218, y: 1.0476692}
-  m_Size: {x: 1.403652, y: 2.190456}
+  m_Offset: {x: 0.00696218, y: 1.2538016}
+  m_Size: {x: 1.403652, y: 1.7781911}
   m_Direction: 0
 --- !u!114 &1245408205
 MonoBehaviour:
@@ -4230,6 +4230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 5
+  Jumpspeed: 5
 --- !u!50 &1245408206
 Rigidbody2D:
   serializedVersion: 4
@@ -4289,7 +4290,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.18157017, y: 0.09857583}
+  m_Offset: {x: -0.18157017, y: 0.14212489}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -4300,7 +4301,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0271871, y: 0.19715166}
+  m_Size: {x: 1.0271871, y: 0.28424978}
   m_EdgeRadius: 0
 --- !u!95 &1245408209
 Animator:
