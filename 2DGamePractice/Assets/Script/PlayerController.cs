@@ -70,6 +70,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
     void SwitchAnimation()
     {
         anim.SetBool("Idle", false);
