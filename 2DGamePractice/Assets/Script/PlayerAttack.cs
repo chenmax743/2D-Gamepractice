@@ -53,7 +53,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Enemy"))
         {
-            other.GetComponent<EnemyBoard>().TakeDamage(damage);
+            other.GetComponent<Enemy>().TakeDamage(damage);
         }
     }
 }
