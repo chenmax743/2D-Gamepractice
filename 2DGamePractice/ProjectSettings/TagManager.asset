@@ -13,8 +13,8 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
-  - 
+  - Player
+  - Enemy
   - 
   - 
   - 
@@ -48,6 +48,12 @@ TagManager:
   - name: Middle
     uniqueID: 3916906383
     locked: 0
-  - name: Front
+  - name: Front1
     uniqueID: 3200950053
+    locked: 0
+  - name: Front2
+    uniqueID: 3511166365
+    locked: 0
+  - name: Front3
+    uniqueID: 2882319291
     locked: 0

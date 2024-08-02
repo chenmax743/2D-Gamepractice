@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     private bool isGround;
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -27,9 +27,10 @@ public class PlayerController : MonoBehaviour
         Jump();
         CheckGrounded();
         SwitchAnimation();
+        
     }
 
-    void Flip() //character change 
+    void Flip() //切換腳色移動方向。 
     {
         bool playerHasXAxisSpeed = Mathf.Abs(rb.velocity.x) > Mathf.Epsilon;
         anim.SetBool("Run", playerHasXAxisSpeed);
@@ -47,7 +48,7 @@ public class PlayerController : MonoBehaviour
         }
     } 
 
-    void Move() //character Move&Animation
+    void Move() // 角色移動+跑步動畫
     {
         float movedirection = Input.GetAxis("Horizontal");
         Vector2 player = new Vector2(movedirection * Speed, rb.velocity.y);
@@ -56,7 +57,7 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("Run", playerHasXAxisSpeed);
     }
 
-    void Jump()
+    void Jump() //角色跳躍
     {
         if(Input.GetButtonDown("Jump"))
         {
@@ -71,7 +72,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    void SwitchAnimation()
+    void SwitchAnimation() //角色跳躍+落地
     {
         anim.SetBool("Idle", false);
         if(anim.GetBool("Jump"))
@@ -89,9 +90,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void CheckGrounded()
+    void CheckGrounded()//確認是否為地面
     {
         isGround = Feet.IsTouchingLayers(LayerMask.GetMask("Ground"));
-        Debug.Log(isGround);
+        //Debug.Log(isGround);
     }
+
+    public void PlayerAttackAnim()
+    {
+        anim.SetTrigger("Attack");
+    }
+
+    
+    
 }
