@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private BoxCollider2D Feet;
+    public BoxCollider2D Body;
     private bool isGround;
 
     // Start is called before the first frame update
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         Feet = GetComponent<BoxCollider2D>();
+        Body = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -27,6 +29,7 @@ public class PlayerController : MonoBehaviour
         Jump();
         CheckGrounded();
         SwitchAnimation();
+        PlayerBeAttacked();
         
     }
 
@@ -99,6 +102,19 @@ public class PlayerController : MonoBehaviour
     public void PlayerAttackAnim()
     {
         anim.SetTrigger("Attack");
+    }
+
+    public void PlayerBeAttacked()
+    {
+
+    }
+
+    void OnTriggerEnter2D(BoxCollider other)
+    {
+        if(other.gameObject.CompareTag("Enemy"))
+        {
+            anim.SetTrigger("BeAttack");
+        }
     }
 
     

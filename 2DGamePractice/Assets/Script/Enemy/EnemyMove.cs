@@ -8,7 +8,7 @@ public class EnemyMove : EnemyManager
    public float MoveDistance = 5.0f;
 
     private Vector3 startposition;
-    private bool movingRight = true;
+    private bool movingRight = false;
 
     public Animator aEnemyAnimation;
 
@@ -21,25 +21,47 @@ public class EnemyMove : EnemyManager
     void Update()
     {
         aEnemyAnimation.SetBool("Run",true);
-        if(movingRight)
+         if (movingRight)
         {
-            transform.Translate(Vector3.right * MoveSpeed * Time.deltaTime);
-            transform.localScale = new Vector3(-1,1,1);
+            transform.Translate(Vector2.right * MoveSpeed * Time.deltaTime);
+            if (transform.position.x >= startposition.x + MoveDistance)
+            {
+                movingRight = false;
+                Flip();
+            }
         }
         else
         {
-            transform.Translate(Vector3.left * MoveSpeed * Time.deltaTime);
-            transform.localScale = new Vector3(1,1,1);
-        }
-
-        if(Vector3.Distance(startposition,transform.position)>=MoveDistance)
-        {
-            movingRight = !movingRight;
-            startposition = transform.position;
-
-           
+            transform.Translate(Vector2.left * MoveSpeed * Time.deltaTime);
+            if (transform.position.x <= startposition.x - MoveDistance)
+            {
+                movingRight = true;
+                Flip();
+            }
         }
 
         
+    }
+
+    private void Flip()
+    {
+        Vector3 localScale = transform.localScale;
+        localScale.x*=-1;
+        transform.localScale=localScale;
+    }
+
+    
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Wall"))
+        {
+            movingRight =!movingRight;
+        }
+
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            aEnemyAnimation.SetBool("Attack",true);
+        }
     }
 }

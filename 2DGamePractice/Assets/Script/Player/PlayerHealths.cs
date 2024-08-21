@@ -5,32 +5,38 @@ using UnityEngine.UI;
 
 public class PlayerHealths : MonoBehaviour
 {
-    public Slider healthBar;
-    public float MaxHealth = 100f;
-    private float currentHealth;
+    public int iMaxHealth = 100;
+    private int iCurrentHealth;
+    public Slider sHealthBar;
     
 
     void Start()
     {
-        currentHealth=MaxHealth;
-        UpdateHealthBar();
-        
+        iCurrentHealth=iMaxHealth;
+        sHealthBar.maxValue = iMaxHealth;
+        sHealthBar.value =iCurrentHealth;
     }
 
-    void UpdateHealthBar()
+    void Update()
     {
-        healthBar.value = currentHealth;
-    }
-
-    public void TakeDamage(float damage)
-    {
-        currentHealth -= damage;
-        if(currentHealth<0)
+        if(Input.GetKeyDown(KeyCode.L))
         {
-            currentHealth = 0;
+            GetComponent<PlayerHealths>().TakeDamage(10);
         }
-        UpdateHealthBar();
-
         
     }
+
+    
+
+    protected void TakeDamage(int amount)
+    {
+        iCurrentHealth-=amount;
+        if(iCurrentHealth<0)
+        {
+            iCurrentHealth=0;
+        }
+        sHealthBar.value = iCurrentHealth;
+    }
+
+    
 }
