@@ -8846,7 +8846,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 5
-  Jumpspeed: 5
+  Jumpspeed: 10
   Body: {fileID: 0}
 --- !u!50 &1245408206
 Rigidbody2D:

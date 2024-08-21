@@ -19,10 +19,7 @@ public class PlayerHealths : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.L))
-        {
-            GetComponent<PlayerHealths>().TakeDamage(10);
-        }
+       
         
     }
 
@@ -36,6 +33,14 @@ public class PlayerHealths : MonoBehaviour
             iCurrentHealth=0;
         }
         sHealthBar.value = iCurrentHealth;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            GetComponent<PlayerHealths>().TakeDamage(10);
+        }   
     }
 
     
