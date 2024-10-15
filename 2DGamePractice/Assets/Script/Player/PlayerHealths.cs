@@ -39,7 +39,7 @@ public class PlayerHealths : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Enemy"))
         {
-            GetComponent<PlayerHealths>().TakeDamage(10);
+            TakeDamage(10);
         }   
     }
 
